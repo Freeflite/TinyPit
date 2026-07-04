@@ -1,0 +1,2 @@
+# Unix line endings everywhere (the service file / binary run on Linux).
+* text=auto eol=lf

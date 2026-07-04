@@ -1,0 +1,18 @@
+[package]
+name = "tinypit"
+version = "0.1.0"
+edition = "2021"
+description = "Tiny zero-window TCP tarpit: accept, never read, dribble, hold. Pairs with ProBAN."
+license = "BSD-2-Clause"
+repository = "https://github.com/Freeflite/TinyPit"
+
+[dependencies]
+tokio = { version = "1", features = ["net", "time", "rt-multi-thread", "macros", "io-util", "sync"] }
+socket2 = "0.5"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

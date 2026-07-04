@@ -1,0 +1,19 @@
+[Unit]
+Description=tinypit zero-window TCP tarpit
+After=network.target
+
+[Service]
+# [::] is dual-stack (v4+v6) on Linux; the binary forces IPV6_V6ONLY off so it holds for v4-mapped peers too
+Environment=TINYPIT_LISTEN=[::]:3333
+Environment=TINYPIT_LOG=/var/log/tinypit/connections.log
+Environment=TINYPIT_MAX=8192
+Environment=TINYPIT_PER_IP=64
+Environment=TINYPIT_DRIBBLE=30
+Environment=TINYPIT_RCVBUF=256
+ExecStart=/usr/local/bin/tinypit
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
